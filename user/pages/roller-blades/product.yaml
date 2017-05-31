@@ -1,0 +1,7 @@
+template: 'product'
+content:
+  name: 'Roller blades'
+  description: 'They got wheels in a line'
+  image:
+    src: '750x750-fit-Bladerunner-Phoenix-Kids-RollerBlades-BlackPurple.png'
+    alt: 'Bladerunner Phoenix Kids Roller Blades in black and purple'
