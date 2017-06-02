@@ -1,0 +1,78 @@
+<script>
+    $(function() {
+        initEditableTextField();
+        initEditableImageField();
+
+        function initEditableTextField()
+        {
+            $('[contenteditable][data-editable-text-field]').each(function(){
+                $(this).on('blur', function(){
+                    var field = $(this).attr('data-editable-text-field'),
+                        value = $(this).text();
+
+                    updateField(field, value);
+                });
+            });
+
+            function updateField(field, value)
+            {
+                $.ajax({
+                    url: '/update/{{ config.pageTitle }}',
+                    data: {
+                        field: field,
+                        value: value
+                    },
+                    type: 'POST',
+                    error: function(error) {
+                        console.log(error);
+                    },
+                    success: function(data) {
+                        console.log(data);
+                    }
+                });
+            }
+        }
+
+        function initEditableImageField()
+        {
+            $('[data-editable-image-field]').each(function(){
+                var field = $(this).attr('data-editable-image-field');
+
+                $(this).wrap('<div data-editable-image-wrapper></div>');
+
+                $(this).before('<form data-editable-image-upload-form="' + field + '">' +
+                        '<input type="file" name="image" />' +
+                        '<button type="submit" data-editable-image-upload-button>Upload</button>' +
+                    '</form>');
+            });
+
+            $('[data-editable-image-upload-form]').each(function(){
+                $(this).on('submit', function(e){
+                    e.preventDefault();
+
+                    var $file = $(this).find('input[type="file"]'),
+                        file = $file[0].files;
+
+                });
+            });
+
+            function updateField(field, value)
+            {
+                $.ajax({
+                    url: '/update/{{ config.pageTitle }}',
+                    data: {
+                        field: field,
+                        value: value
+                    },
+                    type: 'POST',
+                    error: function(error) {
+                        console.log(error);
+                    },
+                    success: function(data) {
+                        console.log(data);
+                    }
+                });
+            }
+        }
+    });
+</script>

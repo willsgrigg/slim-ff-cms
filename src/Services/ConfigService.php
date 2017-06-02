@@ -24,4 +24,22 @@ class ConfigService
             return Yaml::parse(file_get_contents($page));
         }
     }
+
+    public static function setPageConfig($page, $params)
+    {
+        foreach(glob(self::PAGES_PATH . "$page/*.yaml") as $page)
+        {
+            // only one yaml file exists in each page directory
+            $yaml = Yaml::parse(file_get_contents($page));
+
+            $loc = &$yaml;
+            foreach(explode('.', $params['field']) as $step)
+            {
+                $loc = &$loc[$step];
+            }
+            $loc = $params['value'];
+
+            file_put_contents($page, Yaml::dump($yaml));
+        }
+    }
 }

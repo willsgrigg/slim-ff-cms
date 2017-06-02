@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% block head %}
+            {% include 'partials/head.html.twig' %}
+        {% endblock head %}
+    </head>
+    <body>
+        {% block body %}
+            <section id="body" class="{{ class }}">
+                {% block content %}{% endblock %}
+            </section>
+        {% endblock %}
+        {% block footer %}
+            {% include 'partials/footer.html.twig' %}
+        {% endblock footer %}
+    </body>
+</html>
