@@ -35,13 +35,9 @@ class PageController
 
     public function update($request, $response, $args)
     {
-        $parameters = [];
-
         $page = $args['page'];
 
-        foreach($request->getParsedBody() as $key => $param){
-            $parameters[$key] = $param;
-        }
+        $parameters = $this->getParameters($request, $page);
 
         ConfigService::setPageConfig($page, $parameters);
     }
@@ -58,5 +54,51 @@ class PageController
             'site' => ConfigService::getSiteConfig(),
             'page' => $pageConfig['page'],
         ]);
+    }
+
+    private function getParameters($request, $page)
+    {
+        $parameters = [];
+
+        $requestBody = $this->getRequestBody($request, $page);
+
+        foreach($requestBody as $key => $param){
+            $parameters[$key] = $param;
+        }
+
+        return $parameters;
+    }
+
+    private function getRequestBody($request, $page)
+    {
+        if(!$request->getUploadedFiles())
+        {
+            return $request->getParsedBody();
+        }
+
+        return $this->handleFileUpload($request, $page);
+    }
+
+    private function handleFileUpload($request, $page)
+    {
+        $files = $request->getUploadedFiles();
+
+        foreach($files as $key => $file)
+        {
+            $key = str_replace('_', '.', $key);
+
+            if ($file->getError() === UPLOAD_ERR_OK) {
+                $uploadFileName = $file->getClientFilename();
+
+                $pagesPath = ConfigService::PAGES_PATH;
+
+                $file->moveTo("$pagesPath$page/$uploadFileName");
+
+                return [
+                    'field' => "$key.src",
+                    'value' => $uploadFileName,
+                ];
+            }
+        }
     }
 }

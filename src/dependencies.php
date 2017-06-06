@@ -21,6 +21,7 @@ $container['view'] = function ($c) {
     $view->addExtension(new App\TwigExtensions\Image($c, $basePath));
     $view->addExtension(new App\TwigExtensions\EditableText($c, $basePath));
     $view->addExtension(new App\TwigExtensions\EditableImage($c, $basePath));
+    $view->addExtension(new App\TwigExtensions\Markdown($c, $basePath));
 
     return $view;
 };

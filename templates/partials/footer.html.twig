@@ -49,10 +49,28 @@
             $('[data-editable-image-upload-form]').each(function(){
                 $(this).on('submit', function(e){
                     e.preventDefault();
+                    console.log('submit');
 
-                    var $file = $(this).find('input[type="file"]'),
-                        file = $file[0].files;
+                    var field = $(this).attr('data-editable-image-upload-form'),
+                        $file = $(this).find('input[type="file"]'),
+                        file = $file[0].files[0],
+                        formData = new FormData();
 
+                    formData.append(field, file);
+
+                    var xhr = new XMLHttpRequest();
+
+                    xhr.open('POST', '/update/{{ config.pageTitle }}', true);
+
+                    xhr.send(formData);
+
+                    xhr.onload = function () {
+                        if (xhr.status === 200) {
+                            console.log('succcess');
+                        } else {
+                            console.log('error');
+                        }
+                    };
                 });
             });
 
