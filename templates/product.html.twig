@@ -6,6 +6,6 @@
 
     {{ page.description|markdown }}
 
-    <img {{ editable_image('page.image') }} src="{{ image(page.image).src }}" alt="{{ image(page.image).alt }}" />
+    <img {{ editable_image('page.image') }} src="{{ image(page.image).src }}" />
 
 {% endblock %}

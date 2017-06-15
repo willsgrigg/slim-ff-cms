@@ -20,10 +20,24 @@
         font-weight: 200;
         margin-bottom: 0;
     }
-    [data-editable-image-wrapper] form[data-editable-image-upload-form] {
-        position: absolute;
-        width: 100%;
-    }
+    {% if config.edit %}
+        [data-editable-main-overlay] {
+            position: fixed;
+            width: 25%;
+            height: auto;
+            left: 0;
+            top: 0;
+        }
+
+        [data-editable-add-page-overlay] {
+            display: none;
+        }
+
+        [data-editable-image-wrapper] form[data-editable-image-upload-form] {
+            position: absolute;
+            width: 100%;
+        }
+    {% endif %}
 </style>
 <script
         src="https://code.jquery.com/jquery-3.2.1.min.js"
