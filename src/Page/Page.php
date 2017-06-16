@@ -2,7 +2,7 @@
 
 namespace App\Page;
 
-use Markdown;
+use App\Markdown;
 
 class Page
 {

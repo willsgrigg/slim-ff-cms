@@ -12,4 +12,9 @@ class ConfigService
     {
         return Yaml::parse(file_get_contents( self::USER_PATH . 'site.yaml'));
     }
+
+    public static function getTemplates()
+    {
+        return Yaml::parse(file_get_contents( self::USER_PATH . 'templates.yaml'));
+    }
 }

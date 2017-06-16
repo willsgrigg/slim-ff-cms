@@ -74,7 +74,7 @@
                         pageName = $pageName.val();
 
                     createPage(pageName, function(){
-                        window.location.replace('/edit/' + pageName);
+                        window.location.replace('/edit/' + convertToSlug(pageName));
                     });
                 });
             }
@@ -196,6 +196,14 @@
                     tmp = tmp[path[i]] = {};
                 }
                 tmp[path[i]] = value;
+            }
+
+            function convertToSlug(Text)
+            {
+                return Text
+                    .toLowerCase()
+                    .replace(/ /g,'-')
+                    .replace(/[^\w-]+/g,'');
             }
 
             return {

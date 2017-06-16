@@ -1,5 +1,7 @@
 <?php declare(strict_types=1);
 
+$app->get('/templates', '\App\Controllers\TemplateController:all');
+
 $app->post('/page/create', '\App\Page\PageController:create');
 
 $app->post('/page/update/{page}', '\App\Page\PageController:update');

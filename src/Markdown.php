@@ -1,6 +1,9 @@
 <?php declare(strict_types=1);
 
+namespace App;
+
 use App\Page\Page;
+use Exception;
 use Symfony\Component\Yaml\Yaml;
 
 class Markdown
@@ -24,18 +27,13 @@ class Markdown
     {
         $template = $page->getTemplate();
 
-        $yaml = [
-            'page' => [
-                'name' => $page->getName()
-            ],
-            'template' => $template
-        ];
-
         if(!mkdir($page->getFullPagePath()))
         {
             throw new Exception('Unable to create directory.');
         }
 
-        return file_put_contents($page->getFullPagePath() . "/$template" . self::EXTENSION, Yaml::dump($yaml));
+        $fileName = $page->getFullPagePath() . "/$template" . self::EXTENSION;
+
+        return file_put_contents($fileName, Yaml::dump($page->getPage()));
     }
 }
