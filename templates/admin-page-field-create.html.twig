@@ -1,0 +1,21 @@
+{% extends 'partials/layout.html.twig' %}
+
+{% block content %}
+    <h1>Admin</h1>
+
+    <h2>{{ page.page.name }}</h2>
+
+    <h3>{{ field }}</h3>
+
+    <form method="POST" href="admin/create/{{ page.slug }}/{{ field }}">
+        <p>
+            <label for="type">Field type</label>
+            <select name="type" id="type">
+                <option name="text">Text</option>
+            </select>
+        </p>
+        <p>
+            <button type="submit">Submit</button>
+        </p>
+    </form>
+{% endblock %}

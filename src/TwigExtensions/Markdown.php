@@ -29,6 +29,6 @@ class Markdown extends TwigExtension
     {
         $parsedown = new Parsedown();
 
-        echo $parsedown->text($string);
+        return $parsedown->text($string);
     }
 }

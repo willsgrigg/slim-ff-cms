@@ -1,0 +1,13 @@
+{% extends 'partials/layout.html.twig' %}
+
+{% block content %}
+    <h1>Admin</h1>
+
+    {{ page.page.name }}
+
+    <ul>
+        {% for field in fields %}
+            <li><a href="{{ page.slug }}/{{ field.name }}">{{ field.name }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

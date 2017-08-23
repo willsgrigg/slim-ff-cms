@@ -3,10 +3,12 @@
 namespace App\Controllers;
 
 use App\Services\ConfigService;
+use Slim\Http\Request;
+use Slim\Http\Response;
 
 class TemplateController
 {
-    public function all($request, $response)
+    public function all(Request $request, Response $response, array $args)
     {
         $templates = ConfigService::getTemplates();
 

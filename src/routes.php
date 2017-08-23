@@ -1,13 +1,21 @@
 <?php declare(strict_types=1);
 
-$app->get('/templates', '\App\Controllers\TemplateController:all');
+$app->get('/admin', 'AdminController:show');
 
-$app->post('/page/create', '\App\Page\PageController:create');
+$app->get('/admin/{page}', 'AdminController:showPage');
 
-$app->post('/page/update/{page}', '\App\Page\PageController:update');
+$app->get('/admin/{page}/{field}', 'AdminController:showPageField');
 
-$app->get('/pages', '\App\Page\PageController:all');
+$app->post('/admin/create/{page}/{field}', 'AdminController:createPageField');
 
-$app->get('/edit/{page}', '\App\Page\PageController:edit');
+//$app->post('/admin/{page}/{field}', 'AdminController:updatePageField');
 
-$app->get('/{page}', '\App\Page\PageController:show');
+$app->get('/templates', 'TemplateController:all');
+
+$app->post('/page/create', 'PageController:create');
+
+$app->post('/page/update/{page}', 'PageController:update');
+
+$app->get('/pages', 'PageController:all');
+
+$app->get('/{page}', 'PageController:show');

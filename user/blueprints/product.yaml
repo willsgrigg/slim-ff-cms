@@ -1,0 +1,4 @@
+fields:
+    title: { name: Title, type: Text }
+    heading: { name: Heading, type: null }
+slug: product

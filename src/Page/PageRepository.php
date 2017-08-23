@@ -13,7 +13,22 @@ class PageRepository
         foreach(glob(self::PAGES_PATH . "$page/*.md") as $page)
         {
             // only one markdown file exists in each page directory
-            return Yaml::parse(file_get_contents($page));
+            $yaml = Yaml::parse(file_get_contents($page));
+
+            $yaml['blueprint'] = basename($page, '.md');
+
+            return $yaml;
+        }
+    }
+
+    public static function getContent($page, $key)
+    {
+        foreach(glob(self::PAGES_PATH . "$page/*.md") as $page)
+        {
+            // only one markdown file exists in each page directory
+            $page = Yaml::parse(file_get_contents($page));
+
+            return $page[$key];
         }
     }
 

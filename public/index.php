@@ -26,5 +26,7 @@ require __DIR__ . '/../src/middleware.php';
 // Register routes
 require __DIR__ . '/../src/routes.php';
 
+var_dump($app->getContainer()->get('router')->getRoutes());
+
 // Run app
 $app->run();

@@ -25,14 +25,14 @@ class Markdown
 
     public static function save(Page $page)
     {
-        $template = $page->getTemplate();
+        $blueprint = $page->getBlueprint();
 
         if(!mkdir($page->getFullPagePath()))
         {
             throw new Exception('Unable to create directory.');
         }
 
-        $fileName = $page->getFullPagePath() . "/$template" . self::EXTENSION;
+        $fileName = $page->getFullPagePath() . "/$blueprint" . self::EXTENSION;
 
         return file_put_contents($fileName, Yaml::dump($page->getPage()));
     }

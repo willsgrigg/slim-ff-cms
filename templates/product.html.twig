@@ -1,11 +1,9 @@
 {% extends 'partials/layout.html.twig' %}
 
 {% block content %}
-
-    <h1 {{ editable_text('page.name') }}>{{ page.name }}</h1>
+    <h1>{{ content('title') }}</h1>
 
     {{ page.description|markdown }}
 
-    <img {{ editable_image('page.image') }} src="{{ image(page.image).src }}" />
-
+    <img src="{{ image(page.image).src }}" />
 {% endblock %}

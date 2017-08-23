@@ -39,13 +39,23 @@ class Page
         return $this->page['page']['name'];
     }
 
-    public function getTemplate(): string
+    public function getBlueprint(): string
     {
-        return $this->page['template'];
+        return $this->page['blueprint'];
     }
 
-    public function getContent(): array
+    public function getContent(string $key = null)
     {
+        if($key)
+        {
+            if(isset($this->page['page'][$key]))
+            {
+                return $this->page['page'][$key];
+            }
+
+            return null;
+        }
+
         return $this->page['page'];
     }
 
